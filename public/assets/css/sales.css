@@ -1,0 +1,138 @@
+/* ============================
+   Sales dashboard layout
+   ============================ */
+
+.sales-dashboard {
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Filters header */
+
+.sales-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.sales-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.sales-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Summary cards */
+
+.sales-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.summary-card {
+    border-radius: 0.75rem;
+    background: var(--color-border-soft);
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+}
+
+.summary-label {
+    font-size: 0.8rem;
+    color: var(--color-text-subtle);
+    margin-bottom: 0.25rem;
+}
+
+.summary-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Sales table */
+
+.sales-table-wrapper {
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.sales-table thead {
+    background: var(--color-border-soft);
+}
+
+.sales-table th,
+.sales-table td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.sales-table th {
+    font-weight: 500;
+    color: var(--color-text-subtle);
+    white-space: nowrap;
+}
+
+.sales-table tbody tr:nth-child(even) {
+    background: #fbfdff;
+}
+
+.sales-table tbody tr:hover {
+    background: #edf5ff;
+}
+
+/* Empty state */
+
+.empty-state {
+    padding: 1rem;
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+/* Sales modal overrides (using global .modal) */
+
+.sales-dashboard .modal {
+    max-width: 480px;
+}
+
+/* Responsive adjustments specific to sales */
+
+@media (max-width: 768px) {
+    .sales-dashboard {
+        padding: 1rem;
+    }
+
+    .sales-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .sales-filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Hide note + last updated on narrow screens for space */
+    .sales-table th:nth-child(6),
+    .sales-table td:nth-child(6),
+    .sales-table th:nth-child(7),
+    .sales-table td:nth-child(7) {
+        display: none;
+    }
+}

@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Adjust this if your public folder is mounted differently
+RewriteBase /junktracker/public/
+
+# If the file or directory exists, serve it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise route everything through index.php
+RewriteRule ^ index.php [QSA,L]

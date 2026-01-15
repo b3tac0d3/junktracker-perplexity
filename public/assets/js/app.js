@@ -1,0 +1,1 @@
+// Placeholder for future JS (Ajax client search, modals, etc.)
