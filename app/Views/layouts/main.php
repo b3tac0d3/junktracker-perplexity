@@ -7,10 +7,11 @@ $baseUrl = rtrim($this->config['app']['base_url'], '/');
     <meta charset="utf-8">
     <title><?= htmlspecialchars($title ?? 'JunkTracker') ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap 5 (CDN) -->
+        <!-- Bootstrap 5 (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/app.css">
-    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/sales.css">
+    <!-- Your custom styles AFTER Bootstrap -->
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/app.css?v=2">
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/sales.css?v=2">
 </head>
 <body class="bg-light">
 <!-- <nav class="navbar navbar-dark bg-dark navbar-expand-lg mb-3">

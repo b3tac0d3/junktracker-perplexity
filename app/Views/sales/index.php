@@ -3,8 +3,15 @@
 /**
  * Each $sale is an associative array with keys:
  * id, type, name, note, start_date, end_date, gross_amount, net_amount, updated_at
- * pulled from the `sales` table. [file:1]
+ * pulled from the `sales` table.
  */
+
+// Helper function to format dates as mm/dd/yyyy
+function formatDate($date) {
+    if (empty($date)) return '';
+    $timestamp = strtotime($date);
+    return date('m/d/Y', $timestamp);
+}
 ?>
 <div class="sales-dashboard">
 
@@ -53,30 +60,42 @@
                     <th>Net</th>
                     <th>Note</th>
                     <th>Last Updated</th>
-                    <th>Edit</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="salesTableBody">
                 <?php if (!empty($sales)): ?>
                     <?php foreach ($sales as $sale): ?>
                         <?php
-                            $start = !empty($sale['start_date']) ? $sale['start_date'] : null;
-                            $end   = !empty($sale['end_date']) ? $sale['end_date'] : null;
+                            // Format dates as mm/dd/yyyy
+                            $start = !empty($sale['start_date']) ? formatDate($sale['start_date']) : null;
+                            $end   = !empty($sale['end_date']) ? formatDate($sale['end_date']) : null;
+                            
                             if ($start && $end && $start !== $end) {
                                 $dateLabel = $start . ' – ' . $end;
                             } else {
                                 $dateLabel = $start ?: ($end ?: '');
                             }
+                            
                             $netRaw = isset($sale['net_amount']) ? (float)$sale['net_amount'] : 0;
+                            $updatedAt = !empty($sale['updated_at']) ? formatDate($sale['updated_at']) : '';
                         ?>
                         <tr data-type="<?php echo htmlspecialchars($sale['type']); ?>">
-                            <td><?php echo htmlspecialchars($dateLabel); ?></td>
+                            <td>
+                                <a href="/sales/view/<?php echo $sale['id']; ?>" class="text-primary" style="text-decoration: none;">
+                                    <?php echo htmlspecialchars($dateLabel); ?>
+                                </a>
+                            </td>
                             <td>
                                 <span class="type-badge type-<?php echo htmlspecialchars($sale['type']); ?>">
                                     <?php echo ucfirst($sale['type']); ?>
                                 </span>
                             </td>
-                            <td><?php echo htmlspecialchars($sale['name']); ?></td>
+                            <td>
+                                <a href="/sales/view/<?php echo $sale['id']; ?>" style="text-decoration: none; color: inherit;">
+                                    <?php echo htmlspecialchars($sale['name']); ?>
+                                </a>
+                            </td>
                             <td class="amount-cell"
                                 data-gross="<?php echo htmlspecialchars($sale['gross_amount']); ?>">
                                 $<?php echo number_format($sale['gross_amount'], 2); ?>
@@ -97,24 +116,30 @@
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <?php echo htmlspecialchars($sale['updated_at']); ?>
+                                <?php echo htmlspecialchars($updatedAt); ?>
                             </td>
                             <td>
-                                <button
-                                    class="btn btn-sm btn-secondary editSaleBtn"
-                                    data-sale='<?php echo json_encode([
-                                        'id'           => $sale['id'],
-                                        'type'         => $sale['type'],
-                                        'name'         => $sale['name'],
-                                        'note'         => $sale['note'],
-                                        'start_date'   => $sale['start_date'],
-                                        'end_date'     => $sale['end_date'],
-                                        'gross_amount' => $sale['gross_amount'],
-                                        'net_amount'   => $sale['net_amount'],
-                                    ], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>'
-                                >
-                                    Edit
-                                </button>
+                                <div style="display: flex; gap: 0.25rem;">
+                                    <a href="/sales/view/<?php echo $sale['id']; ?>" class="btn btn-sm btn-light" title="View">
+                                        👁️
+                                    </a>
+                                    <button
+                                        class="btn btn-sm btn-secondary editSaleBtn"
+                                        data-sale='<?php echo json_encode([
+                                            'id'           => $sale['id'],
+                                            'type'         => $sale['type'],
+                                            'name'         => $sale['name'],
+                                            'note'         => $sale['note'],
+                                            'start_date'   => $sale['start_date'],
+                                            'end_date'     => $sale['end_date'],
+                                            'gross_amount' => $sale['gross_amount'],
+                                            'net_amount'   => $sale['net_amount'],
+                                        ], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>'
+                                        title="Edit"
+                                    >
+                                        Edit
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

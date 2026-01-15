@@ -48,9 +48,9 @@ body {
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    color: var(--color-text-main);
-    background-color: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    color: var(--color-text-main) !important;
+    background-color: #ffffff !important;
 }
 
 /* Generic page container helper */
@@ -61,64 +61,76 @@ body {
 }
 
 /* ============================
-   Buttons
+   Buttons - Override Bootstrap
    ============================ */
 
 .btn {
-    border-radius: 0.4rem;
-    border: 1px solid transparent;
-    padding: 0.45rem 0.9rem;
-    font-size: 0.875rem;
+    border-radius: 0.4rem !important;
+    border: 1px solid transparent !important;
+    padding: 0.45rem 0.9rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     gap: 0.25rem;
-    background: #ffffff;
-    color: var(--color-text-main);
+    background: #ffffff !important;
+    color: var(--color-text-main) !important;
     transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
-        box-shadow 0.15s ease, transform 0.05s ease;
+        box-shadow 0.15s ease, transform 0.05s ease !important;
+    text-decoration: none !important;
 }
 
 .btn:hover {
     transform: translateY(-0.5px);
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12) !important;
+    color: var(--color-text-main) !important;
 }
 
 .btn-primary {
-    background: var(--color-success);
-    border-color: var(--color-success);
-    color: #ffffff;
+    background: var(--color-success) !important;
+    border-color: var(--color-success) !important;
+    color: #ffffff !important;
 }
 
-.btn-primary:hover {
-    background: #248a3d;
-    border-color: #248a3d;
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: #248a3d !important;
+    border-color: #248a3d !important;
+    color: #ffffff !important;
 }
 
 .btn-secondary {
-    background: var(--color-border-soft);
-    border-color: var(--color-border);
-    color: var(--color-text-main);
+    background: var(--color-border-soft) !important;
+    border-color: var(--color-border) !important;
+    color: var(--color-text-main) !important;
 }
 
-.btn-secondary:hover {
-    background: #e2e5e9;
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background: #e2e5e9 !important;
+    color: var(--color-text-main) !important;
 }
 
 .btn-light {
-    background: #ffffff;
-    border-color: var(--color-border);
-    color: var(--color-text-main);
+    background: #ffffff !important;
+    border-color: var(--color-border) !important;
+    color: var(--color-text-main) !important;
 }
 
-.btn-light:hover {
-    background: #f8fafc;
+.btn-light:hover,
+.btn-light:focus,
+.btn-light:active {
+    background: #f8fafc !important;
+    color: var(--color-text-main) !important;
 }
 
 .btn-sm {
-    padding: 0.25rem 0.6rem;
-    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem !important;
+    font-size: 0.8rem !important;
 }
 
 /* ============================
@@ -126,13 +138,14 @@ body {
    ============================ */
 
 .filter-btn {
-    border: 1px solid var(--color-border);
-    background: #ffffff;
-    border-radius: 999px;
-    padding: 0.35rem 0.9rem;
-    font-size: 0.85rem;
+    border: 1px solid var(--color-border) !important;
+    background: #ffffff !important;
+    border-radius: 999px !important;
+    padding: 0.35rem 0.9rem !important;
+    font-size: 0.85rem !important;
+    font-weight: 400 !important;
     cursor: pointer;
-    color: var(--color-text-main);
+    color: var(--color-text-main) !important;
     transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.05s;
 }
 
@@ -142,9 +155,9 @@ body {
 }
 
 .filter-btn.active {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    color: #ffffff;
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: #ffffff !important;
 }
 
 /* ============================
@@ -152,32 +165,32 @@ body {
    ============================ */
 
 .type-badge {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
-    padding: 0.15rem 0.5rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 500;
+    padding: 0.15rem 0.5rem !important;
+    border-radius: 999px !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
 }
 
 .type-shop {
-    background: var(--color-shop-bg);
-    color: var(--color-shop-text);
+    background: var(--color-shop-bg) !important;
+    color: var(--color-shop-text) !important;
 }
 
 .type-scrap {
-    background: var(--color-scrap-bg);
-    color: var(--color-scrap-text);
+    background: var(--color-scrap-bg) !important;
+    color: var(--color-scrap-text) !important;
 }
 
 .type-ebay {
-    background: var(--color-ebay-bg);
-    color: var(--color-ebay-text);
+    background: var(--color-ebay-bg) !important;
+    color: var(--color-ebay-text) !important;
 }
 
 .type-other {
-    background: var(--color-other-bg);
-    color: var(--color-other-text);
+    background: var(--color-other-bg) !important;
+    color: var(--color-other-text) !important;
 }
 
 /* ============================
@@ -185,11 +198,11 @@ body {
    ============================ */
 
 .muted {
-    color: var(--color-text-muted);
+    color: var(--color-text-muted) !important;
 }
 
 .text-subtle {
-    color: var(--color-text-subtle);
+    color: var(--color-text-subtle) !important;
 }
 
 /* ============================
@@ -197,9 +210,9 @@ body {
    ============================ */
 
 .amount-cell {
-    text-align: right;
+    text-align: right !important;
     font-feature-settings: "tnum" 1;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
 
 .note-cell {
@@ -264,19 +277,19 @@ body {
 .form-row input,
 .form-row select,
 .form-row textarea {
-    border-radius: 0.5rem;
-    border: 1px solid var(--color-border);
-    padding: 0.4rem 0.5rem;
-    font-size: 0.875rem;
-    font-family: inherit;
+    border-radius: 0.5rem !important;
+    border: 1px solid var(--color-border) !important;
+    padding: 0.4rem 0.5rem !important;
+    font-size: 0.875rem !important;
+    font-family: inherit !important;
 }
 
 .form-row input:focus,
 .form-row select:focus,
 .form-row textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 1px rgba(9, 105, 218, 0.15);
+    outline: none !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 1px rgba(9, 105, 218, 0.15) !important;
 }
 
 /* ============================
@@ -296,6 +309,7 @@ body {
     margin: auto;
     max-width: 480px;
     width: 100%;
+    max-height: 90vh;
     background: #ffffff;
     border-radius: 0.75rem;
     box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
