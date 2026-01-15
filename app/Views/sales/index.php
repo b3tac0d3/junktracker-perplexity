@@ -82,7 +82,7 @@ function formatDate($date) {
                         ?>
                         <tr data-type="<?php echo htmlspecialchars($sale['type']); ?>">
                             <td>
-                                <a href="/sales/view/<?php echo $sale['id']; ?>" class="text-primary" style="text-decoration: none;">
+                                <a href="/sales/<?php echo $sale['id']; ?>" class="text-primary" style="text-decoration: none;">
                                     <?php echo htmlspecialchars($dateLabel); ?>
                                 </a>
                             </td>
@@ -92,7 +92,7 @@ function formatDate($date) {
                                 </span>
                             </td>
                             <td>
-                                <a href="/sales/view/<?php echo $sale['id']; ?>" style="text-decoration: none; color: inherit;">
+                                <a href="/sales/<?php echo $sale['id']; ?>" style="text-decoration: none; color: inherit;">
                                     <?php echo htmlspecialchars($sale['name']); ?>
                                 </a>
                             </td>
@@ -120,7 +120,7 @@ function formatDate($date) {
                             </td>
                             <td>
                                 <div style="display: flex; gap: 0.25rem;">
-                                    <a href="/sales/view/<?php echo $sale['id']; ?>" class="btn btn-sm btn-light" title="View">
+                                    <a href="/sales/<?php echo $sale['id']; ?>" class="btn btn-sm btn-light" title="View">
                                         👁️
                                     </a>
                                     <button
