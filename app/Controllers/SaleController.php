@@ -22,8 +22,9 @@ class SaleController extends Controller
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
         $filters = [
-            'q'    => $_GET['q']    ?? '',
-            'type' => $_GET['type'] ?? '',
+            'q'      => $_GET['q']      ?? '',
+            'status' => $_GET['status'] ?? '',
+            'source' => $_GET['source'] ?? '',
         ];
 
         $pagination = $this->sales->paginate($filters, $page, 25);
@@ -43,10 +44,10 @@ class SaleController extends Controller
         $user = $this->auth->user();
 
         $this->render('sales/form', [
-            'title'  => 'Add Sale',
-            'user'   => $user,
-            'sale'   => null,
-            'mode'   => 'create',
+            'title' => 'Add Sale',
+            'user'  => $user,
+            'sale'  => null,
+            'mode'  => 'create',
             'errors' => [],
         ]);
     }
@@ -154,15 +155,12 @@ class SaleController extends Controller
     private function collectFormData(): array
     {
         return [
-            'job_id'       => !empty($_POST['job_id']) ? (int)$_POST['job_id'] : null,
-            'type'         => $_POST['type'] ?? 'shop',
-            'name'         => trim($_POST['name'] ?? ''),
-            'note'         => trim($_POST['note'] ?? ''),
-            'start_date'   => trim($_POST['start_date'] ?? ''),
-            'end_date'     => trim($_POST['end_date'] ?? ''),
-            'gross_amount' => trim($_POST['gross_amount'] ?? ''),
-            'net_amount'   => trim($_POST['net_amount'] ?? ''),
-            'active'       => isset($_POST['active']) ? 1 : 1,
+            'client_id' => !empty($_POST['client_id']) ? (int)$_POST['client_id'] : null,
+            'sale_date' => trim($_POST['sale_date'] ?? ''),
+            'amount'    => trim($_POST['amount'] ?? ''),
+            'status'    => $_POST['status'] ?? 'pending',
+            'source'    => $_POST['source'] ?? 'shop',
+            'note'      => trim($_POST['note'] ?? ''),
         ];
     }
 
@@ -170,16 +168,20 @@ class SaleController extends Controller
     {
         $errors = [];
 
-        if (empty($data['name'])) {
-            $errors['name'] = 'Name is required.';
+        if (empty($data['sale_date'])) {
+            $errors['sale_date'] = 'Sale date is required.';
         }
 
-        if (empty($data['type'])) {
-            $errors['type'] = 'Type is required.';
+        if (empty($data['amount']) || !is_numeric($data['amount'])) {
+            $errors['amount'] = 'Valid amount is required.';
         }
 
-        if (empty($data['gross_amount']) || !is_numeric($data['gross_amount'])) {
-            $errors['gross_amount'] = 'Valid gross amount is required.';
+        if (empty($data['status'])) {
+            $errors['status'] = 'Status is required.';
+        }
+
+        if (empty($data['source'])) {
+            $errors['source'] = 'Source is required.';
         }
 
         return $errors;

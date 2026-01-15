@@ -1,19 +1,18 @@
 <?php
 /** @var array $sale */
 /**
- * Sale detail view
- * Displays all information about a single sale entry
+ * Sale detail view - content only, wrapped by main.php layout
  */
 
 // Helper function to format dates as mm/dd/yyyy
-function formatDate($date) {
+function formatDateSale($date) {
     if (empty($date)) return 'N/A';
     $timestamp = strtotime($date);
     return date('m/d/Y', $timestamp);
 }
 
 // Helper function to format datetime as mm/dd/yyyy hh:mm AM/PM
-function formatDateTime($datetime) {
+function formatDateTimeSale($datetime) {
     if (empty($datetime)) return 'N/A';
     $timestamp = strtotime($datetime);
     return date('m/d/Y g:i A', $timestamp);
@@ -30,7 +29,7 @@ function formatDateTime($datetime) {
             </a>
         </div>
         <div style="display: flex; gap: 0.5rem;">
-            <button class="btn btn-secondary" id="editSaleBtn">Edit</button>
+            <a href="/sales/<?php echo $sale['id']; ?>/edit" class="btn btn-secondary">Edit</a>
             <button class="btn btn-danger" id="deleteSaleBtn">Delete</button>
         </div>
     </div>
@@ -86,13 +85,13 @@ function formatDateTime($datetime) {
             <div class="detail-row">
                 <span class="detail-label">Start Date:</span>
                 <span class="detail-value">
-                    <?php echo formatDate($sale['start_date']); ?>
+                    <?php echo formatDateSale($sale['start_date']); ?>
                 </span>
             </div>
             <div class="detail-row">
                 <span class="detail-label">End Date:</span>
                 <span class="detail-value">
-                    <?php echo formatDate($sale['end_date']); ?>
+                    <?php echo formatDateSale($sale['end_date']); ?>
                 </span>
             </div>
             <?php if (!empty($sale['start_date']) && !empty($sale['end_date'])): ?>
@@ -124,13 +123,13 @@ function formatDateTime($datetime) {
             <div class="detail-row">
                 <span class="detail-label">Last Updated:</span>
                 <span class="detail-value">
-                    <?php echo formatDateTime($sale['updated_at']); ?>
+                    <?php echo formatDateTimeSale($sale['updated_at']); ?>
                 </span>
             </div>
             <div class="detail-row">
                 <span class="detail-label">Created:</span>
                 <span class="detail-value">
-                    <?php echo formatDateTime($sale['created_at']); ?>
+                    <?php echo formatDateTimeSale($sale['created_at']); ?>
                 </span>
             </div>
         </div>
@@ -166,7 +165,7 @@ function formatDateTime($datetime) {
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-light" id="deleteModalCancel">Cancel</button>
-        <form method="POST" action="/sales/delete/<?php echo $sale['id']; ?>" style="display: inline;">
+        <form method="POST" action="/sales/<?php echo $sale['id']; ?>/delete" style="display: inline;">
             <button type="submit" class="btn btn-danger">Delete Sale</button>
         </form>
     </div>
@@ -174,9 +173,7 @@ function formatDateTime($datetime) {
 
 <style>
 .sale-detail {
-    padding: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 1.5rem 0;
 }
 
 .sale-detail-header {
@@ -279,7 +276,7 @@ function formatDateTime($datetime) {
 
 @media (max-width: 768px) {
     .sale-detail {
-        padding: 1rem;
+        padding: 1rem 0;
     }
 
     .sale-detail-header {
@@ -306,12 +303,6 @@ function formatDateTime($datetime) {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Edit button - redirect to edit page or open modal
-    const editBtn = document.getElementById('editSaleBtn');
-    editBtn.addEventListener('click', function() {
-        window.location.href = '/sales/edit/<?php echo $sale['id']; ?>';
-    });
-
     // Delete button - show confirmation modal
     const deleteBtn = document.getElementById('deleteSaleBtn');
     const deleteModal = document.getElementById('deleteModal');

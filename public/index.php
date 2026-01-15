@@ -67,6 +67,9 @@ $router->post('/sales', 'SaleController@store');
 $router->get('/sales/{id}', 'SaleController@show');
 $router->get('/sales/{id}/edit', 'SaleController@edit');
 $router->post('/sales/{id}', 'SaleController@update');
+$router->post('/sales/{id}/delete', 'SaleController@delete');  // ADD THIS LINE
+
+
 
 // Users (admin only)
 $router->get('/admin/users', 'UserController@index');
