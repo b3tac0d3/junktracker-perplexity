@@ -5,8 +5,7 @@
 
 $baseUrl = rtrim($this->config['app']['base_url'], '/');
 $isEdit = ($mode === 'edit');
-$formAction = $isEdit ? "$baseUrl/sales/{$sale['id']}/update" : "$baseUrl/sales/store";
-?>
+$formAction = $isEdit ? "$baseUrl/sales/{$sale['id']}" : "$baseUrl/sales";?>
 
 <!-- Wrapper container for consistent layout -->
 <div style="max-width: 900px; margin: 0 auto; padding: 1.5rem 0;">
