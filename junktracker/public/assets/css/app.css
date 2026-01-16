@@ -1,0 +1,385 @@
+/* ============================
+   Global color system
+   ============================ */
+
+:root {
+    /* Brand colors */
+    --color-primary: #0969da;
+    --color-primary-soft: #e7f5ff;
+
+    --color-success: #2da44e;
+    --color-success-soft: #e6fffa;
+
+    --color-border: #d0d7de;
+    --color-border-soft: #f6f8fa;
+
+    --color-text-main: #24292f;
+    --color-text-muted: #8c959f;
+    --color-text-subtle: #57606a;
+
+    /* Type badges */
+    --color-shop-bg: #e7f5ff;
+    --color-shop-text: #095aba;
+
+    --color-scrap-bg: #fff7e6;
+    --color-scrap-text: #b46900;
+
+    --color-ebay-bg: #e6fffa;
+    --color-ebay-text: #067d68;
+
+    --color-other-bg: #f5e6ff;
+    --color-other-text: #6e2ab3;
+}
+
+/* ============================
+   Base
+   ============================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    color: var(--color-text-main) !important;
+    background-color: #ffffff !important;
+}
+
+/* Generic page container helper */
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+/* ============================
+   Buttons - Override Bootstrap
+   ============================ */
+
+.btn {
+    border-radius: 0.4rem !important;
+    border: 1px solid transparent !important;
+    padding: 0.45rem 0.9rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.25rem;
+    background: #ffffff !important;
+    color: var(--color-text-main) !important;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+        box-shadow 0.15s ease, transform 0.05s ease !important;
+    text-decoration: none !important;
+}
+
+.btn:hover {
+    transform: translateY(-0.5px);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12) !important;
+    color: var(--color-text-main) !important;
+}
+
+.btn-primary {
+    background: var(--color-success) !important;
+    border-color: var(--color-success) !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: #248a3d !important;
+    border-color: #248a3d !important;
+    color: #ffffff !important;
+}
+
+.btn-secondary {
+    background: var(--color-border-soft) !important;
+    border-color: var(--color-border) !important;
+    color: var(--color-text-main) !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background: #e2e5e9 !important;
+    color: var(--color-text-main) !important;
+}
+
+.btn-light {
+    background: #ffffff !important;
+    border-color: var(--color-border) !important;
+    color: var(--color-text-main) !important;
+}
+
+.btn-light:hover,
+.btn-light:focus,
+.btn-light:active {
+    background: #f8fafc !important;
+    color: var(--color-text-main) !important;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.6rem !important;
+    font-size: 0.8rem !important;
+}
+
+/* ============================
+   Pills / filters
+   ============================ */
+
+.filter-btn {
+    border: 1px solid var(--color-border) !important;
+    background: #ffffff !important;
+    border-radius: 999px !important;
+    padding: 0.35rem 0.9rem !important;
+    font-size: 0.85rem !important;
+    font-weight: 400 !important;
+    cursor: pointer;
+    color: var(--color-text-main) !important;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.05s;
+}
+
+.filter-btn:hover {
+    transform: translateY(-0.5px);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12);
+}
+
+.filter-btn.active {
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: #ffffff !important;
+}
+
+/* ============================
+   Type badges (used in sales, but global)
+   ============================ */
+
+.type-badge {
+    display: inline-flex !important;
+    align-items: center;
+    padding: 0.15rem 0.5rem !important;
+    border-radius: 999px !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+}
+
+.type-shop {
+    background: var(--color-shop-bg) !important;
+    color: var(--color-shop-text) !important;
+}
+
+.type-scrap {
+    background: var(--color-scrap-bg) !important;
+    color: var(--color-scrap-text) !important;
+}
+
+.type-ebay {
+    background: var(--color-ebay-bg) !important;
+    color: var(--color-ebay-text) !important;
+}
+
+.type-other {
+    background: var(--color-other-bg) !important;
+    color: var(--color-other-text) !important;
+}
+
+/* ============================
+   Generic text helpers
+   ============================ */
+
+.muted {
+    color: var(--color-text-muted) !important;
+}
+
+.text-subtle {
+    color: var(--color-text-subtle) !important;
+}
+
+/* ============================
+   Table helpers
+   ============================ */
+
+.amount-cell {
+    text-align: right !important;
+    font-feature-settings: "tnum" 1;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+}
+
+.note-cell {
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Simple generic table pattern if needed elsewhere */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.table th,
+.table td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.table thead {
+    background: var(--color-border-soft);
+}
+
+.table tbody tr:nth-child(even) {
+    background: #fbfdff;
+}
+
+.table tbody tr:hover {
+    background: #edf5ff;
+}
+
+/* ============================
+   Form basics (usable site‑wide)
+   ============================ */
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.75rem;
+}
+
+.form-row-inline {
+    flex-direction: row;
+    gap: 0.75rem;
+}
+
+.form-row-inline > div {
+    flex: 1;
+}
+
+.form-row label {
+    font-size: 0.8rem;
+    color: var(--color-text-subtle);
+    margin-bottom: 0.2rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    border-radius: 0.5rem !important;
+    border: 1px solid var(--color-border) !important;
+    padding: 0.4rem 0.5rem !important;
+    font-size: 0.875rem !important;
+    font-family: inherit !important;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    outline: none !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 1px rgba(9, 105, 218, 0.15) !important;
+}
+
+/* ============================
+   Simple modal pattern (global)
+   ============================ */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.42);
+    z-index: 40;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-header h2 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.modal-close {
+    border: none;
+    background: transparent;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--color-text-subtle);
+}
+
+.modal-body {
+    padding: 0.9rem 1rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+/* ============================
+   Responsive helpers
+   ============================ */
+
+@media (max-width: 768px) {
+    .page-container {
+        padding: 1rem;
+    }
+
+   /* ============================
+   Main content wrapper - 75% width on large screens
+   ============================ */
+.main-content {
+  max-width: 75vw;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    max-width: 100%;
+  }
+}
+}
