@@ -179,153 +179,39 @@ $baseUrl = rtrim($this->config['app']['base_url'], '/');
 .sale-detail {
     padding: 1.5rem 0;
 }
-
-.sale-detail-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.sale-detail-title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.sale-detail-title h1 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-.sale-detail-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.detail-card {
-    background: #ffffff;
-    border: 1px solid var(--color-border);
-    border-radius: 0.75rem;
-    padding: 1.25rem;
-}
-
-.detail-card-full {
-    grid-column: 1 / -1;
-}
-
-.detail-card-title {
-    margin: 0 0 1rem 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text-main);
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: 0.5rem;
-}
-
-.detail-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--color-border-soft);
-}
-
-.detail-row:last-child {
-    border-bottom: none;
-}
-
-.detail-label {
-    font-size: 0.875rem;
-    color: var(--color-text-subtle);
-    font-weight: 500;
-}
-
-.detail-value {
-    font-size: 0.875rem;
-    color: var(--color-text-main);
-    font-weight: 400;
-    text-align: right;
-}
-
-.detail-note-content {
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: var(--color-text-main);
-    white-space: pre-wrap;
-}
-
-.text-success {
-    color: #2da44e !important;
-}
-
-.text-danger {
-    color: #cf222e !important;
-}
-
-.btn-danger {
-    background: #cf222e !important;
-    border-color: #cf222e !important;
-    color: #ffffff !important;
-}
-
-.btn-danger:hover {
-    background: #a40e26 !important;
-    border-color: #a40e26 !important;
-}
-
-@media (max-width: 768px) {
-    .sale-detail {
-        padding: 1rem 0;
-    }
-
-    .sale-detail-header {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.75rem;
-    }
-
-    .sale-detail-title {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .sale-detail-title h1 {
-        font-size: 1.5rem;
-    }
-
-    .sale-detail-cards {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
+    </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Delete button - show confirmation modal
-    const deleteBtn = document.getElementById('deleteSaleBtn');
+    // Delete Modal Functionality
     const deleteModal = document.getElementById('deleteModal');
     const deleteModalBackdrop = document.getElementById('deleteModalBackdrop');
+    const deleteBtn = document.getElementById('deleteSaleBtn');
     const deleteModalClose = document.getElementById('deleteModalClose');
     const deleteModalCancel = document.getElementById('deleteModalCancel');
 
-    deleteBtn.addEventListener('click', function() {
+    function openDeleteModal() {
         deleteModal.style.display = 'block';
         deleteModalBackdrop.style.display = 'block';
-    });
+    }
 
     function closeDeleteModal() {
         deleteModal.style.display = 'none';
         deleteModalBackdrop.style.display = 'none';
     }
 
-    deleteModalClose.addEventListener('click', closeDeleteModal);
-    deleteModalCancel.addEventListener('click', closeDeleteModal);
-    deleteModalBackdrop.addEventListener('click', closeDeleteModal);
-});
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', openDeleteModal);
+    }
+
+    if (deleteModalClose) {
+        deleteModalClose.addEventListener('click', closeDeleteModal);
+    }
+
+    if (deleteModalCancel) {
+        deleteModalCancel.addEventListener('click', closeDeleteModal);
+    }
+
+    if (deleteModalBackdrop) {
+        deleteModalBackdrop.addEventListener('click', closeDeleteModal);
+    }
 </script>
