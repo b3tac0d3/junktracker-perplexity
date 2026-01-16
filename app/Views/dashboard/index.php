@@ -5,7 +5,7 @@
  */
 ?>
 
-<div class="dashboard-container" style="padding: 1.5rem 0;">
+<div class="dashboard-container" style="max-width: 75%; margin: 0 auto; padding: 1.5rem 0;">
     
     <!-- Quick Stats Row -->
     <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
