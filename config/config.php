@@ -11,8 +11,7 @@ return array (
   ),
   'app' => 
   array (
-    'base_url' => 'http://localhost/junktracker/public',
-    'env' => 'local',
+        'base_url' => 'http://localhost',    'env' => 'local',
     'debug' => true,
     'admin_role_min' => 90,
   ),
