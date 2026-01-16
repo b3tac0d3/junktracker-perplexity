@@ -15,7 +15,6 @@ $baseUrl = rtrim($this->config['app']['base_url'], '/');
 </head>
 <body class="bg-light">
 <!-- <nav class="navbar navbar-dark bg-dark navbar-expand-lg mb-3">
-    <div class="container main-content">
         <a class="navbar-brand" href="<?= $baseUrl ?>/dashboard">JunkTracker</a>
         <form class="d-flex ms-auto me-3" method="get" action="<?= $baseUrl ?>/search">
             <input class="form-control form-control-sm" type="search" name="q" placeholder="Search clients or jobs..." aria-label="Search">
@@ -35,8 +34,7 @@ $baseUrl = rtrim($this->config['app']['base_url'], '/');
     </div>
 </nav> -->
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg mb-3">
-    <div class="<div class="main-content">">
-        <a class="navbar-brand" href="<?= $baseUrl ?>/dashboard">JunkTracker</a>
+        <div class="container">        <a class="navbar-brand" href="<?= $baseUrl ?>/dashboard">JunkTracker</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
