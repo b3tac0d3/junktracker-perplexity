@@ -18,49 +18,58 @@ function formatDateTimeSale($datetime) {
     return date('m/d/Y g:i A', $timestamp);
 }
 ?>
+
 <?php
 $baseUrl = rtrim($this->config['app']['base_url'], '/');
 ?>
-<link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/sales.css?v=2">
 
-<div class="sale-detail">
+<!-- Wrapper container for consistent layout -->
+<div style="max-width: 900px; margin: 0 auto; padding: 1.5rem 0;">
     
-    <!-- Header with back button and actions -->
-    <div class="sale-detail-header">
+    <!-- Back Button -->
+    <div style="margin-bottom: 1rem;">
+        <a href="<?= $baseUrl ?>/sales" class="btn btn-light">
+            ← Back to Sales
+        </a>
+    </div>
+
+    <!-- Header: Title, Type Badge, and Actions -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
         <div>
-            <a href="<?= $baseUrl ?>/sales" class="btn btn-light">
-                ← Back to Sales
-            </a>
+            <h1 style="margin: 0 0 0.5rem 0; font-size: 1.75rem; font-weight: 600;">
+                <?php echo htmlspecialchars($sale['name']); ?>
+            </h1>
+            <span class="type-badge type-<?php echo htmlspecialchars($sale['type']); ?>">
+                <?php echo ucfirst($sale['type']); ?>
+            </span>
         </div>
         <div style="display: flex; gap: 0.5rem;">
-            <a href="<?= $baseUrl ?>/sales/<?php echo $sale['id']; ?>/edit" class="btn btn-secondary">Edit</a>
-            <button class="btn btn-danger" id="deleteSaleBtn">Delete</button>
+            <a href="<?= $baseUrl ?>/sales/<?php echo $sale['id']; ?>/edit" class="btn btn-secondary">
+                Edit
+            </a>
+            <button class="btn btn-danger" id="deleteSaleBtn">
+                Delete
+            </button>
         </div>
     </div>
 
-    <!-- Sale title and type badge -->
-    <div class="sale-detail-title">
-        <h1><?php echo htmlspecialchars($sale['name']); ?></h1>
-        <span class="type-badge type-<?php echo htmlspecialchars($sale['type']); ?>">
-            <?php echo ucfirst($sale['type']); ?>
-        </span>
-    </div>
-
-    <!-- Main info cards -->
-    <div class="sale-detail-cards">
+    <!-- Cards Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
         
         <!-- Financial Summary Card -->
-        <div class="detail-card">
-            <h3 class="detail-card-title">Financial Summary</h3>
-            <div class="detail-row">
-                <span class="detail-label">Gross Amount:</span>
-                <span class="detail-value amount-cell">
+        <div style="background: #ffffff; border: 1px solid var(--color-border, #d0d7de); border-radius: 0.75rem; padding: 1.25rem;">
+            <h3 style="margin: 0 0 1rem 0; font-size: 1rem; font-weight: 600;">Financial Summary</h3>
+            
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                <span style="color: var(--color-text-subtle, #57606a); font-size: 0.875rem;">Gross Amount:</span>
+                <span class="amount-cell" style="font-weight: 600;">
                     $<?php echo number_format($sale['gross_amount'], 2); ?>
                 </span>
             </div>
-            <div class="detail-row">
-                <span class="detail-label">Net Amount:</span>
-                <span class="detail-value amount-cell">
+            
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--color-text-subtle, #57606a); font-size: 0.875rem;">Net Amount:</span>
+                <span class="amount-cell" style="font-weight: 600;">
                     <?php if ($sale['net_amount'] !== null): ?>
                         $<?php echo number_format($sale['net_amount'], 2); ?>
                     <?php else: ?>
@@ -68,88 +77,83 @@ $baseUrl = rtrim($this->config['app']['base_url'], '/');
                     <?php endif; ?>
                 </span>
             </div>
-            <?php if ($sale['net_amount'] !== null && $sale['gross_amount'] > 0): ?>
-                <?php 
-                    $profit = $sale['net_amount'] - $sale['gross_amount'];
-                    $margin = ($profit / $sale['gross_amount']) * 100;
-                ?>
-                <div class="detail-row">
-                    <span class="detail-label">Profit/Loss:</span>
-                    <span class="detail-value amount-cell <?php echo $profit >= 0 ? 'text-success' : 'text-danger'; ?>">
-                        <?php echo $profit >= 0 ? '+' : ''; ?>$<?php echo number_format($profit, 2); ?>
-                        (<?php echo number_format($margin, 1); ?>%)
-                    </span>
-                </div>
-            <?php endif; ?>
         </div>
 
         <!-- Date Information Card -->
-        <div class="detail-card">
-            <h3 class="detail-card-title">Date Information</h3>
-            <div class="detail-row">
-                <span class="detail-label">Start Date:</span>
-                <span class="detail-value">
+        <div style="background: #ffffff; border: 1px solid var(--color-border, #d0d7de); border-radius: 0.75rem; padding: 1.25rem;">
+            <h3 style="margin: 0 0 1rem 0; font-size: 1rem; font-weight: 600;">Date Information</h3>
+            
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                <span style="color: var(--color-text-subtle, #57606a); font-size: 0.875rem;">Start Date:</span>
+                <span style="font-weight: 500;">
                     <?php echo formatDateSale($sale['start_date']); ?>
                 </span>
             </div>
-            <div class="detail-row">
-                <span class="detail-label">End Date:</span>
-                <span class="detail-value">
-                    <?php echo formatDateSale($sale['end_date']); ?>
+            
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--color-text-subtle, #57606a); font-size: 0.875rem;">End Date:</span>
+                <span style="font-weight: 500;">
+                    <?php echo !empty($sale['end_date']) ? formatDateSale($sale['end_date']) : 'N/A'; ?>
                 </span>
             </div>
+
             <?php if (!empty($sale['start_date']) && !empty($sale['end_date'])): ?>
                 <?php 
                     $start = strtotime($sale['start_date']);
                     $end = strtotime($sale['end_date']);
                     $days = round(($end - $start) / (60 * 60 * 24));
                 ?>
-                <div class="detail-row">
-                    <span class="detail-label">Duration:</span>
-                    <span class="detail-value">
-                        <?php echo abs($days); ?> day<?php echo abs($days) !== 1 ? 's' : ''; ?>
-                    </span>
+                <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--color-border, #d0d7de);">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: var(--color-text-subtle, #57606a); font-size: 0.875rem;">Duration:</span>
+                        <span style="font-weight: 500;">
+                            <?php echo abs($days); ?> day<?php echo abs($days) !== 1 ? 's' : ''; ?>
+                        </span>
+                    </div>
                 </div>
             <?php endif; ?>
         </div>
 
-        <!-- Metadata Card -->
-        <div class="detail-card">
-            <h3 class="detail-card-title">Record Information</h3>
-            <div class="detail-row">
-                <span class="detail-label">Sale ID:</span>
-                <span class="detail-value">#<?php echo $sale['id']; ?></span>
+        <!-- Record Information Card -->
+        <div style="background: #ffffff; border: 1px solid var(--color-border, #d0d7de); border-radius: 0.75rem; padding: 1.25rem;">
+            <h3 style="margin: 0 0 1rem 0; font-size: 1rem; font-weight: 600;">Record Information</h3>
+            
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                <span style="color: var(--color-text-subtle, #57606a); font-size: 0.875rem;">Sale ID:</span>
+                <span style="font-weight: 500;">#<?php echo $sale['id']; ?></span>
             </div>
-            <div class="detail-row">
-                <span class="detail-label">Type:</span>
-                <span class="detail-value"><?php echo ucfirst($sale['type']); ?></span>
+            
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                <span style="color: var(--color-text-subtle, #57606a); font-size: 0.875rem;">Type:</span>
+                <span style="font-weight: 500;"><?php echo ucfirst($sale['type']); ?></span>
             </div>
-            <div class="detail-row">
-                <span class="detail-label">Last Updated:</span>
-                <span class="detail-value">
+            
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                <span style="color: var(--color-text-subtle, #57606a); font-size: 0.875rem;">Last Updated:</span>
+                <span style="font-weight: 500; font-size: 0.8125rem;">
                     <?php echo formatDateTimeSale($sale['updated_at']); ?>
                 </span>
             </div>
-            <div class="detail-row">
-                <span class="detail-label">Created:</span>
-                <span class="detail-value">
+            
+            <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--color-text-subtle, #57606a); font-size: 0.875rem;">Created:</span>
+                <span style="font-weight: 500; font-size: 0.8125rem;">
                     <?php echo formatDateTimeSale($sale['created_at']); ?>
                 </span>
             </div>
         </div>
-
     </div>
 
     <!-- Notes Section -->
     <?php if (!empty($sale['note'])): ?>
-        <div class="detail-card detail-card-full">
-            <h3 class="detail-card-title">Notes</h3>
-            <div class="detail-note-content">
-                <?php echo nl2br(htmlspecialchars($sale['note'])); ?>
-            </div>
+        <div style="background: #ffffff; border: 1px solid var(--color-border, #d0d7de); border-radius: 0.75rem; padding: 1.25rem;">
+            <h3 style="margin: 0 0 1rem 0; font-size: 1rem; font-weight: 600;">Notes</h3>
+            <p style="margin: 0; white-space: pre-wrap; color: var(--color-text-main, #24292f); line-height: 1.6;">
+                <?php echo htmlspecialchars($sale['note']); ?>
+            </p>
         </div>
     <?php else: ?>
-        <div class="detail-card detail-card-full">
+        <div style="background: var(--color-border-soft, #f6f8fa); border: 1px solid var(--color-border, #d0d7de); border-radius: 0.75rem; padding: 1.25rem; text-align: center;">
             <p class="muted" style="margin: 0;">No notes for this sale.</p>
         </div>
     <?php endif; ?>
@@ -161,7 +165,7 @@ $baseUrl = rtrim($this->config['app']['base_url'], '/');
 <div class="modal" id="deleteModal" style="display:none;">
     <div class="modal-header">
         <h2>Delete Sale</h2>
-        <button class="modal-close" id="deleteModalClose">&times;</button>
+        <button class="modal-close" id="deleteModalClose">×</button>
     </div>
     <div class="modal-body">
         <p>Are you sure you want to delete this sale? This action cannot be undone.</p>
@@ -174,12 +178,6 @@ $baseUrl = rtrim($this->config['app']['base_url'], '/');
         </form>
     </div>
 </div>
-
-<style>
-.sale-detail {
-    padding: 1.5rem 0;
-}
-    </style>
 
 <script>
     // Delete Modal Functionality
