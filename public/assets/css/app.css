@@ -361,4 +361,25 @@ body {
     .page-container {
         padding: 1rem;
     }
+
+   /* ============================
+   Main content wrapper - 75% width on large screens
+   ============================ */
+.main-content {
+  max-width: 75vw;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    max-width: 100%;
+  }
+}
 }
