@@ -18,18 +18,22 @@ function formatDateTimeSale($datetime) {
     return date('m/d/Y g:i A', $timestamp);
 }
 ?>
+<?php
+$baseUrl = rtrim($this->config['app']['base_url'], '/');
+?>
+<link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/sales.css?v=2">
 
 <div class="sale-detail">
     
     <!-- Header with back button and actions -->
     <div class="sale-detail-header">
         <div>
-            <a href="/sales" class="btn btn-light">
+            <a href="<?= $baseUrl ?>/sales" class="btn btn-light">
                 ← Back to Sales
             </a>
         </div>
         <div style="display: flex; gap: 0.5rem;">
-            <a href="/sales/<?php echo $sale['id']; ?>/edit" class="btn btn-secondary">Edit</a>
+            <a href="<?= $baseUrl ?>/sales/<?php echo $sale['id']; ?>/edit" class="btn btn-secondary">Edit</a>
             <button class="btn btn-danger" id="deleteSaleBtn">Delete</button>
         </div>
     </div>
